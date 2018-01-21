@@ -1,8 +1,9 @@
 spring:
   application:
-    name: USER-SERVICE
+    name: PRODUCT-SERVICE
 server:
-  port: 8081
+  port: 8082
+ # context-path: /productService #DO not add context for routing from eureka via zuul
 eureka:
   client:
     serviceUrl:

@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: ZUUL-GATEWAY
+
+server:
+  port: 9090
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
+
+zuul:
+  #Service will be mapped under the /api URI
+  prefix: /api-gateway
+#  Uncomment to disable auto-registering all services read from Eureka
+#  ignoredServices: '*'
+  routes:
+    test:
+      path: /redirect/**
+      url: http://google.com
+    customer-by-address:
+      path: /customer-by-address/**
+      url: http://localhost:9098
+    user-service:
+      path: /userService/**
+      serviceId: USER-SERVICE
+    product-service:
+      path: /productService/**
+      serviceId: PRODUCT-SERVICE
+    static:
+      path: /static/**

@@ -32,7 +32,12 @@ public class SskUserServiceApplication {
 	        return this.discoveryClient.getInstances(applicationName);
 	    }
 	    
-	    @RequestMapping("/greeting")
+		@RequestMapping("/hello")
+	    public String hello() {
+	        return "hello from user service";
+	    }
+	    
+	    @RequestMapping("/userServiceClient")
 	    public String greeting() {
 	        return "Hello from UserService EurekaClient!";
 	    }
