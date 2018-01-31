@@ -22,6 +22,9 @@ public class SskUserServiceApplication {
 	
 	@RestController
 	class ServiceInstanceRestController {
+		
+		@Autowired
+		private EventSender eventSender;
 
 	    @Autowired
 	    private DiscoveryClient discoveryClient;
@@ -35,6 +38,12 @@ public class SskUserServiceApplication {
 		@RequestMapping("/hello")
 	    public String hello() {
 	        return "hello from user service";
+	    }
+		
+		@RequestMapping("/kafka/sendEvent")
+	    public String kafkaEventSend() {
+			eventSender.send("USER-PRODUCT-PURCHASE", "Anil purchased mozy product");
+	        return "event send sucessfully to product service";
 	    }
 	    
 	    @RequestMapping("/userServiceClient")
