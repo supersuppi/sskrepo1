@@ -12,13 +12,12 @@ import com.ssk.mozy.model.Partner;
 import com.ssk.mozy.service.PartnerService;
 
 @RestController
-@RequestMapping("/api/v1")
 public class PartnerController {
 	
 	@Autowired
 	PartnerService partnerService;
 	 
-	 @GetMapping("/partners")
+	 @GetMapping("/api/v1/partners")
 	 public ResponseEntity<List<Partner>> getAllPartners() {
 		System.out.println("getAllPartners");
 		 
@@ -28,6 +27,12 @@ public class PartnerController {
 		        return ResponseEntity.notFound().build();
 		    }
 		    return ResponseEntity.ok().body(allPartners);
+
+	 }
+	 
+	 @GetMapping("/hello")
+	 public String test() {
+		    return "Hello Boys";
 
 	 }
 

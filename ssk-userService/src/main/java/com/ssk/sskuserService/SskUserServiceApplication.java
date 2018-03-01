@@ -25,6 +25,9 @@ public class SskUserServiceApplication {
 		
 		@Autowired
 		private EventSender eventSender;
+		
+		@Autowired
+		private MessageSender rabbitMsgSender;
 
 	    @Autowired
 	    private DiscoveryClient discoveryClient;
@@ -43,6 +46,12 @@ public class SskUserServiceApplication {
 		@RequestMapping("/kafka/sendEvent")
 	    public String kafkaEventSend() {
 			eventSender.send("USER-PRODUCT-PURCHASE", "Anil purchased mozy product");
+	        return "event send sucessfully to product service";
+	    }
+		
+		@RequestMapping("/rabbit/sendEvent")
+	    public String rabbitEventSend() {
+			rabbitMsgSender.sendMessage("1234");
 	        return "event send sucessfully to product service";
 	    }
 	    
